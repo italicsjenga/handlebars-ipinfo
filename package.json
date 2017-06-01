@@ -11,5 +11,10 @@
     "url": "https://github.com//ngaalex/handlebars-ipinfo"
   },
   "author": "Alex Janka",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.10"
+  }
 }
