@@ -16,8 +16,6 @@ app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
 	getIpInfo(req.ip).done(function (geoinfo: IPGeoJson) {
-		console.log("ip: " + geoinfo.ip);
-		console.log("req.ip: " + req.ip);
 		res.render('home', {
 			helpers: {
 				ip: function () { return geoinfo.ip; },
@@ -28,7 +26,7 @@ app.get('/', function (req, res) {
 				postal: function () { return geoinfo.postal }
 			}
 		});
-	}); //replace with req.ip
+	});
 });
 
 app.listen(3000, 'localhost');
