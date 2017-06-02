@@ -18,11 +18,13 @@
     "@types/handlebars": "^4.0.32",
     "@types/node": "^7.0.23",
     "@types/promise": "^7.1.30",
+    "@types/redis": "^0.12.36",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.10",
     "nodemon": "^1.11.0",
     "promise": "^7.1.1",
+    "redis": "^2.7.1",
     "ts-node": "^3.0.4",
     "typescript": "^2.3.4"
   },
