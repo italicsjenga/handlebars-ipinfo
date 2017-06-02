@@ -59,10 +59,8 @@ function getIpInfo(ip: String): Promise.IThenable<{}> {
 
 		var cached = cache.get(ip);
 		if (cached != null) {
-			console.log("serving cached");
 			resolve(cached);
 		} else {
-			console.log("serving fetched");
 			https.get(options, callback);
 		}
 	})
