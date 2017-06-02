@@ -17,6 +17,7 @@ app.enable('trust-proxy');
 app.get('/', function (req, res) {
 	getIpInfo(req.ips[0]).done(function (geoinfo: IPGeoJson) {
 		console.log("ip: " + geoinfo.ip);
+		console.log("ips[0]: " + req.ips[0]);
 		res.render('home', {
 			helpers: {
 				ip: function () { return geoinfo.ip; },
