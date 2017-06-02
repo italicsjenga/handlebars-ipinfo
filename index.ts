@@ -12,9 +12,10 @@ var cache = new HashMap();
 
 app.engine('handlebars', expresshb({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.enable('trust-proxy');
 
 app.get('/', function (req, res) {
-	getIpInfo("::ffff:" + "119.17.156.106").done(function (geoinfo: IPGeoJson) {
+	getIpInfo(req.ip).done(function (geoinfo: IPGeoJson) {
 		res.render('home', {
 			helpers: {
 				ip: function () { return geoinfo.ip; },
