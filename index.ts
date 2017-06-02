@@ -8,16 +8,16 @@ import HashMap = require('hashmap');
 import { IPGeoJson } from './ip_geo';
 
 var app = express();
+app.enable('trust-proxy');
 var cache = new HashMap();
 
 app.engine('handlebars', expresshb({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-app.enable('trust-proxy');
 
 app.get('/', function (req, res) {
-	getIpInfo(req.ips[0]).done(function (geoinfo: IPGeoJson) {
+	getIpInfo(req.ip).done(function (geoinfo: IPGeoJson) {
 		console.log("ip: " + geoinfo.ip);
-		console.log("ips[0]: " + req.ips[0]);
+		console.log("req.ip: " + req.ip);
 		res.render('home', {
 			helpers: {
 				ip: function () { return geoinfo.ip; },
