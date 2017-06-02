@@ -13,7 +13,16 @@ app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
 	getIpInfo("::ffff:" + "119.17.156.106").done(function (geoinfo: IPGeoJson) {
-		res.render('home');
+		res.render('home', {
+			helpers: {
+				ip: function() { return geoinfo.ip; },
+				city: function() { return geoinfo.city; },
+				region: function() {return geoinfo.region; },
+				country: function() { return geoinfo.country; },
+				loc: function() { return geoinfo.loc; },
+				postal: function() { return geoinfo.postal }
+			}
+		});
 	}); //replace with req.ip
 });
 
