@@ -3,10 +3,12 @@ import expresshb = require('express-handlebars');
 import http = require('http');
 import https = require('https');
 import Promise = require('promise');
+import HashMap = require('hashmap');
 
 import { IPGeoJson } from './ip_geo';
 
 var app = express();
+var cache = new HashMap();
 
 app.engine('handlebars', expresshb({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -15,12 +17,12 @@ app.get('/', function (req, res) {
 	getIpInfo("::ffff:" + "119.17.156.106").done(function (geoinfo: IPGeoJson) {
 		res.render('home', {
 			helpers: {
-				ip: function() { return geoinfo.ip; },
-				city: function() { return geoinfo.city; },
-				region: function() {return geoinfo.region; },
-				country: function() { return geoinfo.country; },
-				loc: function() { return geoinfo.loc; },
-				postal: function() { return geoinfo.postal }
+				ip: function () { return geoinfo.ip; },
+				city: function () { return geoinfo.city; },
+				region: function () { return geoinfo.region; },
+				country: function () { return geoinfo.country; },
+				loc: function () { return geoinfo.loc; },
+				postal: function () { return geoinfo.postal }
 			}
 		});
 	}); //replace with req.ip
@@ -48,11 +50,17 @@ function getIpInfo(ip: String): Promise.IThenable<{}> {
 			});
 
 			response.on('end', function () {
-				console.log(str);
-				resolve(<IPGeoJson>JSON.parse(str.slice(9)));
+				var result = <IPGeoJson>JSON.parse(str.slice(9));
+				cache.set(ip, result);
+				resolve(result);
 			});
 		}
 
-		https.get(options, callback);
+		var cached = cache.get(ip);
+		if (cached != null) {
+			resolve(cached);
+		} else {
+			https.get(options, callback);
+		}
 	})
 }
