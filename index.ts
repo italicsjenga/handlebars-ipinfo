@@ -8,7 +8,7 @@ import HashMap = require('hashmap');
 import { IPGeoJson } from './ip_geo';
 
 var app = express();
-app.enable('trust-proxy');
+app.enable('trust proxy');
 var cache = new HashMap();
 
 app.engine('handlebars', expresshb({ defaultLayout: 'main' }));
