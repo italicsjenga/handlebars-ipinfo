@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "nodemon --exec ts-node -- index.ts"
   },
   "repository": {
     "type": "git",
@@ -13,8 +13,13 @@
   "author": "Alex Janka",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^7.0.23",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
-    "handlebars": "^4.0.10"
-  }
+    "handlebars": "^4.0.10",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.3.4"
+  },
+  "devDependencies": {}
 }
