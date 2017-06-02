@@ -16,6 +16,7 @@ app.enable('trust-proxy');
 
 app.get('/', function (req, res) {
 	getIpInfo(req.ip).done(function (geoinfo: IPGeoJson) {
+		console.log("ip: " + geoinfo.ip);
 		res.render('home', {
 			helpers: {
 				ip: function () { return geoinfo.ip; },
@@ -59,8 +60,10 @@ function getIpInfo(ip: String): Promise.IThenable<{}> {
 
 		var cached = cache.get(ip);
 		if (cached != null) {
+			console.log("serving cached");
 			resolve(cached);
 		} else {
+			console.log("serving fetched");
 			https.get(options, callback);
 		}
 	})
