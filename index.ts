@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 	}); //replace with req.ip
 });
 
-app.listen(3000);
+app.listen(3000, 'localhost');
 
 function getIpInfo(ip: String): Promise.IThenable<{}> {
 	return new Promise(function (resolve, reject) {
