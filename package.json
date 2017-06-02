@@ -15,10 +15,12 @@
   "dependencies": {
     "@types/express": "^4.0.35",
     "@types/express-handlebars": "0.0.29",
+    "@types/fetch-jsonp": "^1.0.0",
     "@types/handlebars": "^4.0.32",
     "@types/node": "^7.0.23",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "fetch-jsonp": "^1.0.7",
     "handlebars": "^4.0.10",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.4",
